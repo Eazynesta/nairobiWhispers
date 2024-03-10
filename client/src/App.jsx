@@ -8,16 +8,12 @@ function App() {
     <>
         <Routes>
           <Route index element={
-                <main> 
-                <Header/>
-                  <Post/>
-                  <Post/> 
-                  <Post/>   
-               </main>
+               <Post/>
           } />
 
           <Route path={'/login'} element={
-            <div>login</div>
+            
+              <div>login</div>
           }/>
         </Routes>
     
