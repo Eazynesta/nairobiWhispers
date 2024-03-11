@@ -32,7 +32,8 @@ function Header(){
         <nav>
           {username && (
             <>
-              <Link to ="/create"/>Create New Post <Link/>
+              
+              <Link to="/create">Create New Post</Link>
               <a onClick={logout}>Log out</a>
             </>
           )}
