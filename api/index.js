@@ -4,12 +4,13 @@ const { default: mongoose } = require('mongoose');
 const User = require('./models/User.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 const salt = bcrypt.genSaltSync(10);
 const secret = 'afdb78afa9a98f';
 
-
+app.use(cookieParser());
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 app.use(express.json())
 mongoose.connect('mongodb+srv://eazynesta:Suckerforcode1@nairobi.zdnbfv4.mongodb.net/?retryWrites=true&w=majority&appName=nairobi');
@@ -41,6 +42,23 @@ app.post('/login', async (req,res)=>{
     }else{
         res.status(400).json('wrong credentials');
     }
+});
+
+app.get('/profile',(req,res)=>{
+const {token} = req.cookies;
+jwt.verify(token, secret, {}, (err,info)=>{
+    if(err) throw err;
+    res.json(info);
+})
+
+    res.json(req.cookies);
+})
+
+app.post('/logout',(req,res) =>{
+    res.cookie('token','').json({
+        id:userDoc._id,
+        username,
+    });
 })
 
 app.listen(4000)
