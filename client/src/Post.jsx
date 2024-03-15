@@ -1,17 +1,18 @@
 import image from '../src/x.jpg';
-function Post(){
+import {formatISO9075} from "date-fns";
+function Post({title,summary,cover,content,createdAt}){
     return(
         <div className='post'>
         <div className="image">
           <img src={image} alt="" />
         </div>                
         <div className="texts">  
-         <h2>EU looking into Apples decision to kill Epic Games developer account</h2>
+         <h2>{title}</h2>
          <p className="info">
           <a href="" className='author'>Nesta</a>
-          <time> 2024-03-07 17:55</time>
+          <time>{formatISO9075(new Date (createdAt))}</time>
          </p>
-         <p className="summary">Epic had planned to launch its own app store, the Epic Games Stores, on iOS in Europe, as well as relaunching Fortnight on Apple’s platform. And it accused Apple of breaching the bloc’s Digital Markets Act (DMA) by killing its developer account.</p>
+         <p className="summary">{summary}</p>
         </div>
       </div>
     );
