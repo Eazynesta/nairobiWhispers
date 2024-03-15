@@ -17,6 +17,8 @@ const secret = 'afdb78afa9a98f';
 app.use(cookieParser());
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 app.use(express.json())
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 mongoose.connect('mongodb+srv://eazynesta:Suckerforcode1@nairobi.zdnbfv4.mongodb.net/?retryWrites=true&w=majority&appName=nairobi');
 
 app.post('/register',async (req,res) => {
@@ -92,7 +94,11 @@ app.post(('/post'),uploadMiddleware.single('file') ,async(req,res) => {
 });
 
 app.get('/post', async (req,res) =>{
-    res.json(await Post.find().populate('author',['username']));
+    res.json(await Post.find()
+    .populate('author',['username'])
+    .sort({createdAt: -1})
+    .limit(20)
+    );
 });
 
 app.listen(4000)
