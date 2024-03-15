@@ -53,7 +53,7 @@ const {token} = req.cookies;
 jwt.verify(token, secret, {}, (err,info)=>{
     if(err) throw err;
     res.json(info);
-})
+});
 
     res.json(req.cookies);
 })
@@ -81,20 +81,19 @@ app.post(('/post'),uploadMiddleware.single('file') ,async(req,res) => {
              summary,
              content,
              cover:newPath,
-             //author:
+             author:info.id,
          });
+     
          res.json(postDoc);
-    })
-    
+        
+    });
 
-
-    
+  
 });
 
 app.get('/post', async (req,res) =>{
-    res.json(await Post.find());
-}
-)
+    res.json(await Post.find().populate('author',['username']));
+});
 
 app.listen(4000)
 
