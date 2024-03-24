@@ -29,12 +29,20 @@ function EditPost(){
         data.set('title', title);
         data.set('summary', summary);
         data.set('content', content);
-        data.set('file', file?.[0]);
-       await fetch('http://localhost:4000/post',{
+        data.set('id', id);
+        if (file?.[0]){
+            data.set('file', file?.[0]); 
+        }
+        
+      const response = await fetch('http://localhost:4000/post',{
             method: 'PUT',
             body: data,
+            credentials:'include',
         });
-        setRedirect(true);
+        if(response.ok){
+            setRedirect(true);
+        }
+        
     }
     if(redirect){
         return <Navigate to={'/post/'+id}/>
