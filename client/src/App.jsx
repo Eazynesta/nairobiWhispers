@@ -1,5 +1,5 @@
 import './App.css';
-import image from '../src/x.jpg';
+
 import Post from "./Post";
 import Header from "./Header";
 import {Route, Routes} from "react-router-dom";
