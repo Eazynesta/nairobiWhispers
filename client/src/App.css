@@ -112,4 +112,18 @@ div.post-page a{
 
 div.post-page h1{
   text-align: center;
+  margin: 10px 0 5px;
+}
+
+div.post-page time{
+  text-align: center;
+  display: block;
+  font-size: .8rem;
+}
+
+div.post-page div.author{
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: .7rem;
+  font-weight: bold;
 }
